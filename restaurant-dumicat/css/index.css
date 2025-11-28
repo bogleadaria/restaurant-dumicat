@@ -1,0 +1,173 @@
+#hero {
+  height: 700px;
+  background-image: url("../images/home-page/above-homepage-photo.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+#hero-content {
+  width: 900px;
+  text-align: center;
+  padding: 50px 0;
+  margin: 0 auto;
+  position: relative;
+  top: 175px;
+  color: white;
+}
+
+#hero-content h1 {
+  font-size: 60px;
+  margin: 0;
+}
+
+#hero-content p {
+  font-size: 20px;
+  font-weight: 350;
+  margin-bottom: 75px;
+}
+
+#hero-content a {
+  text-decoration: none;
+  background-color: #f28c0f;
+  padding: 10px 20px;
+  color: #292525;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 2px 4px 8px rgb(68, 67, 67);
+}
+
+#hero-content a:hover {
+  background-color: rgb(239, 150, 42);
+}
+
+#story{
+    padding: 25px;
+}
+
+#story ul{
+    width: 90%;
+    margin: 0 auto;
+}
+
+#story ul {
+    display: flex;
+}
+
+#the-story{
+    padding: 25px;
+    width: 100%;
+}
+
+#story h2{
+    text-align: center;
+    font-size: 40px;
+    color: #f28c0f;
+    margin: 25px 0;
+}
+
+#story p{
+    text-align: left;
+    color: white;
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+#container{
+    margin: auto 0;
+}
+
+#container #restaurant-img ul{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 10px;
+}
+
+#restaurant-img img{
+    height: 300px;
+    width: 200px;
+    object-fit: cover;
+}
+
+
+#restaurant-img li:nth-of-type(4){
+    margin-top: -30px;
+}
+
+#restaurant-img li:nth-of-type(1){
+    margin-top: 30px;
+}
+
+#specialities {
+  padding: 25px;
+  background-color: #292525;
+}
+
+#specialities h2 {
+  text-align: center;
+  font-size: 40px;
+  color: #f28c0f;
+  margin: 25px 0;
+}
+
+#dishes {
+  display: flex;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 50px;
+  justify-content: center;
+}
+
+.dish {
+  margin: 0 20px;
+  background-color: rgb(60, 60, 60);
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.dish p {
+  text-align: left;
+  color: white;
+  font-size: 25px;
+  margin: 20px 0;
+}
+
+.dish .time {
+  color: rgb(175, 175, 175);
+  font-size: 20px;
+}
+
+.dish img {
+  height: 280px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.item-content {
+  padding: 25px;
+}
+
+#gallery h2{
+    text-align: center;
+    font-size: 40px;
+    color: #f28c0f;
+    margin: 25px 0;
+}
+
+#photos{
+    width: 90%;
+    margin: 0 auto 50px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1% 1%;
+    
+}
+
+#photos li img{
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
