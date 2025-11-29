@@ -1,0 +1,129 @@
+create table category
+(
+    category_id int auto_increment
+        primary key,
+    name        varchar(32) null
+);
+
+create table client
+(
+    client_id int auto_increment
+        primary key,
+    name      varchar(32) null,
+    phone     varchar(20) null,
+    mail      varchar(32) null,
+    address   varchar(60) null
+);
+
+create table ingredients
+(
+    ingredient_id int auto_increment
+        primary key,
+    name          varchar(32) null,
+    is_allergen   tinyint(1)  null
+);
+
+create table menu
+(
+    menu_id int auto_increment
+        primary key,
+    name    varchar(32) null
+);
+
+create table product
+(
+    product_id  int auto_increment
+        primary key,
+    category_id int         null,
+    name        varchar(32) null,
+    price       int         null,
+    stock       int         null,
+    constraint product_category_category_id_fk
+        foreign key (category_id) references category (category_id)
+);
+
+create table gallery
+(
+    photo_id   int auto_increment
+        primary key,
+    photo      blob null,
+    product_id int  null,
+    constraint gallery_product___fk
+        foreign key (product_id) references product (product_id)
+);
+
+create table menu_item
+(
+    menu_id       int null,
+    category_id   int null,
+    product_id    int null,
+    ingredient_id int null,
+    constraint category__fk
+        foreign key (category_id) references category (category_id),
+    constraint ingredients__fk
+        foreign key (ingredient_id) references ingredients (ingredient_id),
+    constraint menu_item__fk
+        foreign key (menu_id) references menu (menu_id),
+    constraint product___fk
+        foreign key (product_id) references product (product_id)
+);
+
+create table `order`
+(
+    order_id    int auto_increment
+        primary key,
+    status      varchar(10) null,
+    total_price int         null,
+    client_id   int         null,
+    product_id  int         null,
+    constraint client__fk
+        foreign key (client_id) references client (client_id),
+    constraint product__fk
+        foreign key (product_id) references product (product_id)
+);
+
+create table `product-ingredient`
+(
+    product_id    int null,
+    ingredient_id int null,
+    constraint ingredient__fk
+        foreign key (ingredient_id) references ingredients (ingredient_id),
+    constraint product_fk
+        foreign key (product_id) references product (product_id)
+);
+
+create table `table`
+(
+    table_id     int auto_increment
+        primary key,
+    number       int null,
+    seats_number int null
+);
+
+create table reservation
+(
+    reservation_id   int auto_increment
+        primary key,
+    client_id        int         null,
+    table_id         int         null,
+    reservation_date date        null,
+    reservation_time time        null,
+    people_count     int         null,
+    status           varchar(10) null,
+    constraint client___fk
+        foreign key (client_id) references client (client_id),
+    constraint table___fk
+        foreign key (table_id) references `table` (table_id)
+);
+
+create table ticket
+(
+    ticket_id     int auto_increment
+        primary key,
+    ticket_number int not null,
+    product_id    int null,
+    order_id      int null,
+    constraint ticket_order___fk
+        foreign key (order_id) references `order` (order_id)
+);
+
