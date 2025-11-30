@@ -17,19 +17,4 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Repository\Category\" />
-      <Folder Include="Repository\Client\" />
-      <Folder Include="Repository\Gallery\" />
-      <Folder Include="Repository\Ingredient\" />
-      <Folder Include="Repository\Menu\" />
-      <Folder Include="Repository\Menu_Item\" />
-      <Folder Include="Repository\Order\" />
-      <Folder Include="Repository\Product\" />
-      <Folder Include="Repository\Product_Ingredient\" />
-      <Folder Include="Repository\Reservation\" />
-      <Folder Include="Repository\Table\" />
-      <Folder Include="Repository\Ticket\" />
-    </ItemGroup>
-
 </Project>

@@ -1,0 +1,6 @@
+﻿namespace Restaurant_Backend.Repository.Ticket;
+
+public class TicketRepositoryInMemory
+{
+    
+}
