@@ -1,25 +1,42 @@
 using Microsoft.EntityFrameworkCore;
-
+using Restaurant_Backend;
+using Restaurant_Backend.Repository;
+using Restaurant_Backend.Repository.Category;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
+builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+    //// add all repositories to do 
+builder.Services.AddScoped<ICategoryRepository,CategoryRepository>();
+
+    /// after adding repos rermove comments
+// builder.Services.AddControllers();
+
+// var connectionstring = builder.Configuration.GetConnectionString("MyDatabase");
+
+    //// rewrite the corrrect connection string in the appsettings json
+// builder.Services.AddDbContext<ApplicationDbContext>(options =>
+// {
+//     options.UseMySql(connectionstring, ServerVersion.AutoDetect(connectionstring));
+// });
+
+
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();
+
+    ///  to remove comment when done
+// app.MapControllers();
 
 var summaries = new[]
 {
