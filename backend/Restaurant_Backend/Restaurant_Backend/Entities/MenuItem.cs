@@ -3,7 +3,7 @@
 public class MenuItem
 {
     public int Id { get; set; }
-    public int MenuId { get; set; }
-    public int ProductId { get; set; }
-    public int IngredientId { get; set; }
+    public required int MenuId { get; set; }
+    public required int ProductId { get; set; }
+    public required int IngredientId { get; set; }
 }
