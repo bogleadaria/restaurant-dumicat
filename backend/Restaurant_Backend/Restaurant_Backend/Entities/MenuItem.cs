@@ -5,5 +5,6 @@ public class MenuItem
     public int Id { get; set; }
     public required int MenuId { get; set; }
     public required int ProductId { get; set; }
+    public required int CategoryId { get; set; }
     public required int IngredientId { get; set; }
 }
