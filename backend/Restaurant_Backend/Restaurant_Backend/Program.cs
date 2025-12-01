@@ -24,19 +24,20 @@ var app = builder.Build();
 
     //// add all repositories to do 
 builder.Services.AddScoped<ICategoryRepository,CategoryRepository>();
-// builder.Services.AddScoped<IClientRepository,ClientRepository>();
-// builder.Services.AddScoped<IGalleryRepository,GalleryRepository>();
-// builder.Services.AddScoped<IIngredientRepository,IngredientRepository>();
-// builder.Services.AddScoped<IMenuRepository,MenuRepository>();
-// builder.Services.AddScoped<IMenuItemRepository,MenuItemRepository>();
-// builder.Services.AddScoped<IOrderRepository,OrderRepository>();
-// builder.Services.AddScoped<IProductRepository,ProductRepository>();
-// builder.Services.AddScoped<IProductIngredientRepository,ProductIngredientRepository>();
-// builder.Services.AddScoped<IReservationRepository,ReservationRepository>();
-// builder.Services.AddScoped<ITableRepository,TableRepository>();
-// builder.Services.AddScoped<ITicketRepository,TicketRepository>();
-    /// after adding repos rermove comments
-// builder.Services.AddControllers();
+builder.Services.AddScoped<IClientRepository,ClientRepository>();
+builder.Services.AddScoped<IGalleryRepository,GalleryRepository>();
+builder.Services.AddScoped<IIngredientRepository,IngredientRepository>();
+builder.Services.AddScoped<IMenuRepository,MenuRepository>();
+builder.Services.AddScoped<IMenuItemRepository,MenuItemRepository>();
+builder.Services.AddScoped<IOrderRepository,OrderRepository>();
+builder.Services.AddScoped<IProductRepository,ProductRepository>();
+builder.Services.AddScoped<IProductIngredientRepository,ProductIngredientRepository>();
+builder.Services.AddScoped<IReservationRepository,ReservationRepository>();
+builder.Services.AddScoped<ITableRepository,TableRepository>();
+builder.Services.AddScoped<ITicketRepository,TicketRepository>();
+
+/// AddControllers
+builder.Services.AddControllers();
 
 // var connectionstring = builder.Configuration.GetConnectionString("MyDatabase");
 

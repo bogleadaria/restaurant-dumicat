@@ -3,37 +3,45 @@ using Restaurant_Backend.Entities;
 
 namespace Restaurant_Backend.Repository.Client;
 
-public class ClientRepository : IClientRepository
+public class ClientRepository(ApplicationDbContext context) : IClientRepository
 {
-    readonly ApplicationDbContext _context;
-
-    public ClientRepository(ApplicationDbContext context)
-    {
-        _context = context;
-    }
-
     public Entities.Client? GetById(int id)
     {
-        throw new NotImplementedException();
+        var client = context.Clients.FirstOrDefault(x => x.Id == id);
+        return client;
     }
 
     public List<Entities.Client> GetAll()
     {
-        throw new NotImplementedException();
+        return  context.Clients.ToList();
     }
 
 public void Add(Entities.Client client)
     {
-        throw new NotImplementedException();
+        context.Clients.Add(client);
+        context.SaveChanges();
     }
 
     public void Update(Entities.Client client)
     {
-        throw new NotImplementedException();
+        var exists = context.Clients.FirstOrDefault(x => x.Id == client.Id);
+        if (exists != null)
+        {
+            exists.Name = client.Name;
+            exists.Address = client.Address;
+            exists.Phone = client.Phone;
+            exists.Mail = client.Mail;
+        }
+        context.SaveChanges();
     }
     public void Delete(Entities.Client client)
     {
-        throw new NotImplementedException();
+        var exists=context.Clients.FirstOrDefault(x => x.Id == client.Id);
+        if (exists != null)
+        {
+            context.Clients.Remove(client);
+            context.SaveChanges();
+        }
     }
     
     
