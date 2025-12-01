@@ -2,6 +2,6 @@
 
 public class ProductIngredient
 {
-    public int ProductId { get; set; }
-    public int IngredientId { get; set; }
+    public required int ProductId { get; set; }
+    public required int IngredientId { get; set; }
 }

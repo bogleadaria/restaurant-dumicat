@@ -3,7 +3,7 @@
 public class Ticket
 {
     public int Id { get; set; }
-    public int TicketNumber { get; set; }
-    public int ProductId { get; set; }
-    public int OrderId { get; set; }
+    public required int TicketNumber { get; set; }
+    public required int ProductId { get; set; }
+    public required int OrderId { get; set; }
 }

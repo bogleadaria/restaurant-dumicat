@@ -4,7 +4,7 @@ public class Order
 {
     public int Id { get; set; }
     public string? Status { get; set; }
-    public float? TotalPrice { get; set; }
-    public int ClientId { get; set; }
-    public int ProductId { get; set; }
+    public required float TotalPrice { get; set; }
+    public required int ClientId { get; set; }
+    public required int ProductId { get; set; }
 }
