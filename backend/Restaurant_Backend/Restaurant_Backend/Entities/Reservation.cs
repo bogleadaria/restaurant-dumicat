@@ -21,7 +21,5 @@ public class Reservation
     
     public Client Client { get; set; }
     public Table Table { get; set; }
-    
-    
-    public ICollection<Product> Products { get; set; } = new List<Product>();
+   
 }
