@@ -14,9 +14,21 @@ public class GalleryController : ControllerBase
     {
         _galleryRepository = galleryRepository;
     }
+    [HttpGet("{id}/image")]  ////////////// for getting the image directly
+    public IActionResult GetImage(int id)
+    {
+        var gallery = _galleryRepository.GetById(id);
+        if (gallery == null || gallery.Data == null)
+        {
+            return NotFound();
+        }
+
+        // Stream the binary data with the correct content type
+        return File(gallery.Data, gallery.ContentType, gallery.FileName);
+    }
 
     [HttpGet]
-    public IActionResult GetGalleries()
+    public IActionResult GetGalleries()  ////////////// for getting the JSON 
     {
         return  Ok(_galleryRepository.GetAll());
     }
