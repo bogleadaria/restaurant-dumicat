@@ -15,4 +15,7 @@ public class Order
     [Column("product_id")]
     public required int ProductId { get; set; }
     
+    public Client Client { get; set; } = null!;
+    public Product Product { get; set; } = null!;
+    
 }

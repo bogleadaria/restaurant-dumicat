@@ -14,4 +14,11 @@ public class MenuItem
     public required int CategoryId { get; set; }
     [Column("ingredient_id")]
     public required int IngredientId { get; set; }
+    // Navigation properties
+    public Menu Menu { get; set; } = null!;
+    public Product Product { get; set; } = null!;
+    public Category Category { get; set; } = null!;
+    public Ingredient Ingredient { get; set; } = null!;
+
+
 }

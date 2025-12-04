@@ -12,4 +12,6 @@ public class Ticket
     public required int ProductId { get; set; }
     [Column("order_id")]
     public required int OrderId { get; set; }
+    
+    public Product Product { get; set; }
 }

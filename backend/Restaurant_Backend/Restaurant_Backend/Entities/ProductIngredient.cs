@@ -10,4 +10,7 @@ public class ProductIngredient
     public required int ProductId { get; set; }
     [Column("ingredient_id")]
     public required int IngredientId { get; set; }
+    
+    public Product Product { get; set; }
+    public Ingredient Ingredient { get; set; }
 }
