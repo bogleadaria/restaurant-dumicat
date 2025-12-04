@@ -16,4 +16,5 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<Reservation> Reservations{ get; set; }
     public DbSet<Table> Tables{ get; set; }
     public DbSet<Ticket> Tickets{ get; set; }
+    
 }

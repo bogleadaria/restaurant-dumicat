@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 namespace Restaurant_Backend.Entities;
 
+[Table("gallery")]
 public class Gallery
 {
     [Column("photo_id")]
