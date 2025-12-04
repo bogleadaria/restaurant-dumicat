@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 namespace Restaurant_Backend.Entities;
 
+[Table("menu")]
 public class Menu
 {
     [Column("menu_id")]
