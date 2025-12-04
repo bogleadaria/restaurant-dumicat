@@ -10,9 +10,9 @@ public class Reservation
     public required int ClientId { get; set; }
     [Column("table_id")]
     public required int TableId { get; set; }
-    [Column("date")]
+    [Column("reservation_date")]
     public required DateOnly Date { get; set; }
-    [Column("time")]
+    [Column("reservation_time")]
     public required TimeOnly Time { get; set; }
     [Column("people_count")]
     public required int PeopleCount { get; set; }
