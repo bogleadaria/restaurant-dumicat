@@ -1,9 +1,14 @@
-﻿namespace Restaurant_Backend.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+namespace Restaurant_Backend.Entities;
 
 public class Ticket
 {
+    [Column("client_id")]
     public int Id { get; set; }
+    [Column("ticket_number")]
     public required int TicketNumber { get; set; }
+    [Column("product_id")]
     public required int ProductId { get; set; }
+    [Column("order_id")]
     public required int OrderId { get; set; }
 }

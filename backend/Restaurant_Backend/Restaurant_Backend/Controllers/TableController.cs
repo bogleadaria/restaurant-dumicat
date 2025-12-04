@@ -1,6 +1,12 @@
-﻿namespace Restaurant_Backend.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
+using Restaurant_Backend.Repository;
+using Restaurant_Backend.Entities;
 
-public class TableController
+namespace Restaurant_Backend.Controllers;
+
+[ApiController]
+[Route("api/table")]
+public class TableController : ControllerBase
 {
     
 }
