@@ -107,3 +107,4 @@ D:\gits\restaurant-dumicat\backend\Restaurant_Backend\Restaurant_Backend\obj\Deb
 D:\gits\restaurant-dumicat\backend\Restaurant_Backend\Restaurant_Backend\obj\Debug\net9.0\Restaurant_Backend.pdb
 D:\gits\restaurant-dumicat\backend\Restaurant_Backend\Restaurant_Backend\obj\Debug\net9.0\Restaurant_Backend.genruntimeconfig.cache
 D:\gits\restaurant-dumicat\backend\Restaurant_Backend\Restaurant_Backend\obj\Debug\net9.0\ref\Restaurant_Backend.dll
+D:\gits\restaurant-dumicat\backend\Restaurant_Backend\Restaurant_Backend\bin\Debug\net9.0\original.appsettings.Development.json

@@ -10,4 +10,6 @@ public class Table
     public required int TableNumber { get; set; }
     [Column("seats_number")]
     public int? SeatNumber { get; set; }
+    
+    public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
 }

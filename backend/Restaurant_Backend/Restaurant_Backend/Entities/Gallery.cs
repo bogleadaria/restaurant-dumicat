@@ -14,4 +14,6 @@ public class Gallery
     public required string ContentType { get; set; }
     [Column("data")]
     public required byte[] Data { get; set; }
+    
+    public Product Product { get; set; }
 }

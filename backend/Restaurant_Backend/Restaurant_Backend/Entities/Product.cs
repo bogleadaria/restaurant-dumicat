@@ -14,4 +14,17 @@ public class Product
     public float? Price { get; set; }
     [Column("stock")]
     public required int Stock { get; set; }
+    
+    
+
+    //// Navigation
+
+    public Category Category { get; set; } = null!;
+    
+    public ICollection<MenuItem> MenuItems { get; set; } = new List<MenuItem>();
+    public ICollection<Order> Orders { get; set; } = new List<Order>();
+    public ICollection<Gallery> Galleries { get; set; } = new List<Gallery>();
+    public ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
+    public ICollection<ProductIngredient> ProductIngredients { get; set; } = new List<ProductIngredient>();
+
 }

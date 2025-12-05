@@ -4,7 +4,7 @@ namespace Restaurant_Backend.Entities;
 [Table("ticket")]
 public class Ticket
 {
-    [Column("client_id")]
+    [Column("ticket_id")]
     public int Id { get; set; }
     [Column("ticket_number")]
     public required int TicketNumber { get; set; }
@@ -12,4 +12,6 @@ public class Ticket
     public required int ProductId { get; set; }
     [Column("order_id")]
     public required int OrderId { get; set; }
+    
+    public Product Product { get; set; }
 }

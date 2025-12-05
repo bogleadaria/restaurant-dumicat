@@ -13,4 +13,7 @@ public class Client
     public string? Mail {get; set; }
     [Column("address")]
     public string? Address { get; set; }
+    
+    public ICollection<Order> Orders { get; set; } = new List<Order>();
+    public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
 }
