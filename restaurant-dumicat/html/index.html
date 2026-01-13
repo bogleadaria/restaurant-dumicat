@@ -17,18 +17,13 @@
       <div id="logo">
         <a href="../html/index.html"><img src="../images/Dumicat.png" /></a>
       </div>
-      <!-- <div id="Dumi">
-        <a href="../html/index.html"><img src="../images/Dumi.png" /></a>
-      </div>
-      <div id="Cat">
-        <a href="../html/index.html"><img src="../images/Cat.png" /></a>
-      </div> -->
       <nav>
         <ul>
           <li><a href="../html/menu.html">Menu</a></li>
           <li><a href="../html/gallery.html">Gallery</a></li>
           <li><a href="../html/contacts.html">Contacts</a></li>
           <li><a href="../html/order.html">Order</a></li>
+          <li><a href="../html/book-table.html">Book A Table</a></li>
         </ul>
       </nav>
     </header>
@@ -49,7 +44,7 @@
               delightful and memorable dining experience.</break
             >
           </p>
-          <a href="../html/contacts.html">Book A Table</a>
+          <a href="../html/book-table.html">Book A Table</a>
         </div>
       </section>
 
@@ -104,78 +99,38 @@
         </ul>
       </section>
 
-      <section id="specialities">
-        <h2>Our Specialities</h2>
-        <ul id="dishes">
-          <li class="dish">
-            <img
-              src="../images/home-page/french-toast.jpg"
-              alt="French Toast with Maple Syrup"
-            />
-            <div class="item-content">
-              <p>French Toast with Maple Syrup</p>
-              <p class="time">&#128339; 10 mins</p>
-            </div>
-          </li>
-          <li class="dish">
-            <img
-              src="../images/home-page/beef-steak.jpg"
-              alt="Beef Steak with Cooked Vegetables"
-            />
-            <div class="item-content">
-              <p>Beef Steak with Cooked Vegetables</p>
-              <p class="time">&#128339; 25 mins</p>
-            </div>
-          </li>
-          <li class="dish">
-            <img
-              src="../images/home-page/cheese-cake.jpg"
-              alt="Cheese Cake with Salted Caramel"
-            />
-            <div class="item-content">
-              <p>Cheese Cake with Salted Caramel</p>
-              <p class="time">&#128339; 15 mins</p>
-            </div>
-          </li>
-        </ul>
+      <section id="menu">
+        <h2>Explore Our Menu</h2>
+        <p>
+          At Dumicat, our menu is a culinary journey that tantalizes your taste
+          buds and satisfies your cravings. From savory appetizers to decadent
+          desserts, each dish is crafted with passion and precision. Whether
+          you're in the mood for a hearty meal or a light snack, our diverse
+          offerings cater to every palate. Explore our menu and discover the
+          perfect dish to delight your senses.
+        </p>
+        <a href="../html/menu.html">View Full Menu</a>
+        <ul id="menu-items">
+    </ul>
       </section>
-
-      <section id="gallery">
-        <h2>Gallery</h2>
-        <ul id="photos">
-          <li>
-            <img src="../images/home-page/restaurant1.jpg" />
-          </li>
-          <li>
-            <img src="../images/home-page/restaurant3.jpg" />
-          </li>
-          <li>
-            <img src="../images/home-page/cheese-cake.jpg" />
-          </li>
-          <li>
-            <img src="../images/home-page/french-toast.jpg" />
-          </li>
-          <li>
-            <img src="../images/home-page/beef-steak.jpg" />
-          </li>
-          <li>
-            <img src="../images/home-page/restaurant2.jpg" />
-          </li>
-        </ul>
-      </section>
+      
     </main>
 
     <footer>
       <img src="../images/Dumicat.png" />
       <ul>
         <li>
+          <p>Strada Deliciilor nr. 5</p>
+          <p>Timișoara, România</p>
+        </li>
+        <li>
+          <a href="../html/contacts.html">Contacts</a>
+        </li>
+                <li>
           <a href="https://www.facebook.com">Facebook</a>
         </li>
         <li>
           <a href="https://www.instagram.com">Instagram</a>
-        </li>
-        <li>
-          <a href="https://www.gmail.com">Email</a>
         </li>
       </ul>
       <ul>
@@ -188,7 +143,45 @@
         <li>
           <a href="../html/gallery.html">Gallery</a>
         </li>
+
+        <li>
+          <a href="../html/order.html">Order</a>
+        </li>
+        <li>
+          <a href="../html/book-table.html">Book A Table</a>
+        </li>
       </ul>
     </footer>
+
+<script>
+    const API_URL = "https://localhost:7026/api";
+
+    window.addEventListener('DOMContentLoaded', async () => {
+        try {
+            // Fetch data
+            const [prodRes, galRes] = await Promise.all([
+                fetch(`${API_URL}/product`),
+                fetch(`${API_URL}/gallery`)
+            ]);
+            const products = await prodRes.json();
+            const galleries = await galRes.json();
+
+            // Afișăm primele 4 produse
+            const container = document.getElementById('menu-items');
+            products.slice(0, 4).forEach(prod => {
+                const photo = galleries.find(g => g.productId === prod.id);
+                const imageUrl = photo ? `${API_URL}/gallery/${photo.id}/image` : '../images/Dumicat.png';
+
+                const li = document.createElement('li');
+                li.className = 'menu-item';
+                li.innerHTML = `<img src="${imageUrl}" alt="${prod.name}"><h3>${prod.name}</h3>`;
+                container.appendChild(li);
+            });
+        } catch (err) {
+            console.error("Home menu error:", err);
+        }
+    });
+</script>
+
   </body>
 </html>

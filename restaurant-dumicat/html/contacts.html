@@ -1,11 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacts</title>
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@100;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/shared.css" />
+    <link rel="stylesheet" href="../css/contacts.css" />
+    <title>Restaurant Dumicat - Contact</title>
+  </head>
+  <body>
+    <header>
+      <div id="logo">
+        <a href="../html/index.html"><img src="../images/Dumicat.png" /></a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../html/menu.html">Menu</a></li>
+          <li><a href="../html/gallery.html">Gallery</a></li>
+          <li><a href="../html/contacts.html" class="active">Contacts</a></li>
+          <li><a href="../html/order.html">Order</a></li>
+          <li><a href="../html/book-table.html">Book A Table</a></li>
+        </ul>
+      </nav>
+    </header>
     
-</body>
+    <main>
+        <section class="contact-header">
+            <h1>Get in Touch</h1>
+            <p>We'd love to hear from you!</p>
+        </section>
+
+        <div class="contact-container">
+            <div class="contact-card">
+                <div class="icon">📍</div>
+                <h3>Visit Us</h3>
+                <p>Strada Deliciilor nr. 5</p>
+                <p>Timișoara, România</p>
+            </div>
+
+            <div class="contact-card">
+                <div class="icon">📞</div>
+                <h3>Contact Info</h3>
+                <p>+40 722 123 456</p>
+                <p class="email">hello@dumicat.com</p>
+            </div>
+
+            <div class="contact-card">
+                <div class="icon">❤️</div>
+                <h3>Follow Us</h3>
+                <p>See what's cooking on social media</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com" target="_blank" class="social-btn facebook">Facebook</a>
+                    <a href="https://www.instagram.com" target="_blank" class="social-btn instagram">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </main>
+  </body>
 </html>

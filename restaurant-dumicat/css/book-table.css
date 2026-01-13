@@ -1,0 +1,112 @@
+.booking-header {
+    text-align: center;
+    padding: 120px 20px 40px 20px;
+    color: white;
+}
+
+.booking-header h1 {
+    font-size: 50px;
+    color: #f28c0f;
+    margin-bottom: 10px;
+}
+
+.booking-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 80px;
+}
+
+.booking-form {
+    background-color: #1f1c1c;
+    padding: 40px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    border-top: 5px solid #f28c0f; 
+}
+
+.booking-form h2 {
+    color: white;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: #f28c0f;
+    font-size: 14px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.booking-form input, 
+.booking-form select {
+    background-color: #292525; 
+    border: 1px solid #444;
+    padding: 12px;
+    border-radius: 8px;
+    color: white;
+    font-family: "Albert Sans", sans-serif;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.booking-form input:focus,
+.booking-form select:focus {
+    border-color: #f28c0f;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1; 
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: #333;
+    margin: 20px 0 30px 0;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: #f28c0f;
+    color: #292525;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background-color: rgb(239, 150, 42);
+    transform: scale(1.02);
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .booking-form {
+        margin: 0 20px;
+    }
+}

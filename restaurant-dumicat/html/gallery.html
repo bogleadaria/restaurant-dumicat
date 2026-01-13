@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -9,20 +10,75 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../css/shared.css" />
-    <link rel="stylesheet" href="../css/contacts.css" />
-    <title>Restaurant Dumicat</title>
+    <link rel="stylesheet" href="../css/gallery.css" /> <title>Restaurant Dumicat - Gallery</title>
   </head>
   <body>
     <header>
-      <div id="page-logo">
+      <div id="logo">
         <a href="../html/index.html"><img src="../images/Dumicat.png" /></a>
       </div>
       <nav>
         <ul>
           <li><a href="../html/menu.html">Menu</a></li>
-          <li><a href="../html/gallery.html">Gallery</a></li>
+          <li><a href="../html/gallery.html" class="active">Gallery</a></li>
           <li><a href="../html/contacts.html">Contacts</a></li>
+          <li><a href="../html/order.html">Order</a></li>
+          <li><a href="../html/book-table.html">Book A Table</a></li>
         </ul>
       </nav>
     </header>
-  </body
+    
+    <main>
+        <section class="gallery-header">
+            <h1>Moments at Dumicat</h1>
+            <p>Food, atmosphere, and memories.</p>
+        </section>
+
+        <section class="gallery-container" id="gallery-root">
+    </section>
+
+        <div id="imageModal" class="modal" onclick="closeModal()">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="fullImage">
+            <div id="caption"></div>
+        </div>
+
+    </main>
+
+<script>
+    const API_URL = "https://localhost:7026/api";
+
+    window.addEventListener('DOMContentLoaded', async () => {
+        try {
+            // Fetch poze
+            const response = await fetch(`${API_URL}/gallery`);
+            const photos = await response.json();
+            const container = document.getElementById('gallery-root');
+            container.innerHTML = '';
+
+            // Render poze
+            photos.forEach(photo => {
+                const imageUrl = `${API_URL}/gallery/${photo.id}/image`;
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                div.innerHTML = `<img src="${imageUrl}" alt="Photo ${photo.id}" onclick="openModal(this)">`;
+                container.appendChild(div);
+            });
+        } catch (err) {
+            console.error(err);
+            document.getElementById('gallery-root').innerHTML = "<p style='color:white;text-align:center;'>No photos found.</p>";
+        }
+    });
+
+    // Modal logic
+    function openModal(el) {
+        document.getElementById("imageModal").style.display = "block";
+        document.getElementById("fullImage").src = el.src;
+        document.getElementById("caption").innerHTML = el.alt;
+    }
+    function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+</script>
+  </body>
+</html>
