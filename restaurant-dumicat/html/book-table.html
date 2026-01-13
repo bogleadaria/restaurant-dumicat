@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -10,7 +10,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../css/shared.css" />
-    <link rel="stylesheet" href="../css/book-table.css" /> <title>Restaurant Dumicat - Book a Table</title>
+    <link rel="stylesheet" href="../css/book-table.css" />
+    <title>Restaurant Dumicat - Book a Table</title>
   </head>
   <body>
     <header>
@@ -23,11 +24,13 @@
           <li><a href="../html/gallery.html">Gallery</a></li>
           <li><a href="../html/contacts.html">Contacts</a></li>
           <li><a href="../html/order.html">Order</a></li>
-          <li><a href="../html/book-table.html" class="active">Book A Table</a></li>
+          <li>
+            <a href="../html/book-table.html" class="active">Book A Table</a>
+          </li>
         </ul>
       </nav>
     </header>
-    
+
     <main>
       <section class="booking-header">
         <h1>Book Your Table</h1>
@@ -36,44 +39,70 @@
 
       <div class="booking-container">
         <form class="booking-form">
-          
           <h2>Reservation Details</h2>
-          
+
           <div class="form-group">
             <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="John Doe" required>
-            </div>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="John Doe"
+              required
+            />
+          </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" name="phone" placeholder="+40 7xx xxx xxx" required>
-              </div>
-            
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="+40 7xx xxx xxx"
+                required
+              />
+            </div>
+
             <div class="form-group">
               <label for="mail">Email Address</label>
-              <input type="email" id="mail" name="mail" placeholder="john@example.com" required>
-              </div>
+              <input
+                type="email"
+                id="mail"
+                name="mail"
+                placeholder="john@example.com"
+                required
+              />
+            </div>
           </div>
 
-          <hr class="divider">
+          <hr class="divider" />
 
           <div class="form-row">
             <div class="form-group">
               <label for="date">Date</label>
-              <input type="date" id="date" name="reservation_date" required>
-              </div>
+              <input type="date" id="date" name="reservation_date" required />
+            </div>
 
             <div class="form-group">
               <label for="time">Time</label>
-              <input type="time" id="time" name="reservation_time" min="10:00" max="23:00" required>
-              </div>
+              <input
+                type="time"
+                id="time"
+                name="reservation_time"
+                min="10:00"
+                max="23:00"
+                required
+              />
+            </div>
           </div>
 
           <div class="form-group">
             <label for="people">Number of People</label>
             <select id="people" name="people_count" required>
-              <option value="" disabled selected>Select number of guests</option>
+              <option value="" disabled selected>
+                Select number of guests
+              </option>
               <option value="1">1 Person</option>
               <option value="2">2 People</option>
               <option value="3">3 People</option>
@@ -82,66 +111,70 @@
               <option value="6">6 People</option>
               <option value="8">8 People (Large Table)</option>
             </select>
-            </div>
+          </div>
 
           <button type="submit" class="submit-btn">Confirm Reservation</button>
         </form>
       </div>
     </main>
 
-<script>
-    const API_URL = "https://localhost:7026/api";
-    document.getElementById('date').min = new Date().toISOString().split("T")[0]; // Data minimă: Azi
+    <script>
+      const API_URL = "https://localhost:7026/api";
+      document.getElementById("date").min = new Date()
+        .toISOString()
+        .split("T")[0]; // Data minimă: Azi
 
-    document.querySelector('.booking-form').addEventListener('submit', async function(event) {
-        event.preventDefault();
+      document
+        .querySelector(".booking-form")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
 
-        const clientData = {
-            name: document.getElementById('name').value,
-            phone: document.getElementById('phone').value,
-            mail: document.getElementById('mail').value,
-            address: "Timișoara"
-        };
+          const clientData = {
+            name: document.getElementById("name").value,
+            phone: document.getElementById("phone").value,
+            mail: document.getElementById("mail").value,
+            address: "Timișoara",
+          };
 
-        try {
+          try {
             // 1. Creare Client
             const clientResponse = await fetch(`${API_URL}/client`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(clientData)
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(clientData),
             });
 
-            if (!clientResponse.ok) throw new Error(await clientResponse.text());
+            if (!clientResponse.ok)
+              throw new Error(await clientResponse.text());
             const clientResult = await clientResponse.json();
 
             // 2. Creare Rezervare (legată de client)
             const reservationData = {
-                clientId: clientResult.id,
-                tableId: 1, 
-                reservationDate: document.getElementById('date').value,
-                reservationTime: document.getElementById('time').value + ":00",
-                peopleCount: parseInt(document.getElementById('people').value),
-                status: "Pending"
+              clientId: clientResult.id,
+              tableId: 1,
+              reservationDate: document.getElementById("date").value,
+              reservationTime: document.getElementById("time").value + ":00",
+              peopleCount: parseInt(document.getElementById("people").value),
+              status: "Pending",
             };
 
             const resResponse = await fetch(`${API_URL}/reservation`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(reservationData)
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(reservationData),
             });
 
             if (resResponse.ok) {
-                alert("Rezervare reușită!");
-                document.querySelector('.booking-form').reset();
+              alert("Rezervare reușită!");
+              document.querySelector(".booking-form").reset();
             } else {
-                alert("Eroare rezervare: " + await resResponse.text());
+              alert("Eroare rezervare: " + (await resResponse.text()));
             }
-
-        } catch (error) {
+          } catch (error) {
             console.error(error);
             alert("Eroare conexiune server.");
-        }
-    });
-</script>
+          }
+        });
+    </script>
   </body>
 </html>

@@ -1,99 +1,107 @@
 .contact-header {
-    text-align: center;
-    padding: 120px 20px 40px 20px; 
-    color: white;
+  text-align: center;
+  padding: 120px 20px 40px 20px;
+  color: white;
 }
 
 .contact-header h1 {
-    font-size: 50px;
-    color: #f28c0f; 
-    margin-bottom: 10px;
+  font-size: 50px;
+  color: #f28c0f;
+  margin-bottom: 10px;
 }
 
 .contact-header p {
-    font-size: 20px;
-    color: #ccc;
+  font-size: 20px;
+  color: #ccc;
 }
 
 .contact-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; 
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto 60px auto;
-    padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto 60px auto;
+  padding: 0 20px;
 }
 
 .contact-card {
-    background-color: #1f1c1c; 
-    padding: 40px 20px;
-    border-radius: 15px;
-    text-align: center;
-    color: white;
-    flex: 1;
-    min-width: 280px; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    transition: transform 0.3s ease, border-color 0.3s;
-    border: 1px solid transparent;
+  background-color: #1f1c1c;
+  padding: 40px 20px;
+  border-radius: 15px;
+  text-align: center;
+  color: white;
+  flex: 1;
+  min-width: 280px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, border-color 0.3s;
+  border: 1px solid transparent;
 }
 
 .contact-card:hover {
-    transform: translateY(-5px); 
-    border-color: #f28c0f; 
+  transform: translateY(-5px);
+  border-color: #f28c0f;
 }
 
 .icon {
-    font-size: 40px;
-    margin-bottom: 20px;
+  font-size: 40px;
+  margin-bottom: 20px;
 }
 
 .contact-card h3 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: #f28c0f;
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #f28c0f;
 }
 
 .contact-card p {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #ddd;
-    margin: 5px 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #ddd;
+  margin: 5px 0;
 }
 
 .contact-card .email {
-    color: #f28c0f;
-    font-weight: bold;
+  color: #f28c0f;
+  font-weight: bold;
 }
 
 .social-links {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 
 .social-btn {
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    transition: background-color 0.3s;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
 
 .facebook {
-    background-color: #3b5998; 
+  background-color: #3b5998;
 }
 
 .facebook:hover {
-    background-color: #4c70ba;
+  background-color: #4c70ba;
 }
 
 .instagram {
-    background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); /* Gradient Instagram */
+  background: linear-gradient(
+    45deg,
+    #405de6,
+    #5851db,
+    #833ab4,
+    #c13584,
+    #e1306c,
+    #fd1d1d
+  ); /* Gradient Instagram */
 }
 
 .instagram:hover {
-    opacity: 0.9;
+  opacity: 0.9;
 }

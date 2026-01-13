@@ -110,10 +110,8 @@
           perfect dish to delight your senses.
         </p>
         <a href="../html/menu.html">View Full Menu</a>
-        <ul id="menu-items">
-    </ul>
+        <ul id="menu-items"></ul>
       </section>
-      
     </main>
 
     <footer>
@@ -126,7 +124,7 @@
         <li>
           <a href="../html/contacts.html">Contacts</a>
         </li>
-                <li>
+        <li>
           <a href="https://www.facebook.com">Facebook</a>
         </li>
         <li>
@@ -153,35 +151,36 @@
       </ul>
     </footer>
 
-<script>
-    const API_URL = "https://localhost:7026/api";
+    <script>
+      const API_URL = "https://localhost:7026/api";
 
-    window.addEventListener('DOMContentLoaded', async () => {
+      window.addEventListener("DOMContentLoaded", async () => {
         try {
-            // Fetch data
-            const [prodRes, galRes] = await Promise.all([
-                fetch(`${API_URL}/product`),
-                fetch(`${API_URL}/gallery`)
-            ]);
-            const products = await prodRes.json();
-            const galleries = await galRes.json();
+          // Fetch data
+          const [prodRes, galRes] = await Promise.all([
+            fetch(`${API_URL}/product`),
+            fetch(`${API_URL}/gallery`),
+          ]);
+          const products = await prodRes.json();
+          const galleries = await galRes.json();
 
-            // Afișăm primele 4 produse
-            const container = document.getElementById('menu-items');
-            products.slice(0, 4).forEach(prod => {
-                const photo = galleries.find(g => g.productId === prod.id);
-                const imageUrl = photo ? `${API_URL}/gallery/${photo.id}/image` : '../images/Dumicat.png';
+          // Afișăm primele 4 produse
+          const container = document.getElementById("menu-items");
+          products.slice(0, 4).forEach((prod) => {
+            const photo = galleries.find((g) => g.productId === prod.id);
+            const imageUrl = photo
+              ? `${API_URL}/gallery/${photo.id}/image`
+              : "../images/Dumicat.png";
 
-                const li = document.createElement('li');
-                li.className = 'menu-item';
-                li.innerHTML = `<img src="${imageUrl}" alt="${prod.name}"><h3>${prod.name}</h3>`;
-                container.appendChild(li);
-            });
+            const li = document.createElement("li");
+            li.className = "menu-item";
+            li.innerHTML = `<img src="${imageUrl}" alt="${prod.name}"><h3>${prod.name}</h3>`;
+            container.appendChild(li);
+          });
         } catch (err) {
-            console.error("Home menu error:", err);
+          console.error("Home menu error:", err);
         }
-    });
-</script>
-
+      });
+    </script>
   </body>
 </html>
