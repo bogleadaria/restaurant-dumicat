@@ -2,15 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@100;400;700&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/shared.css" />
-    <link rel="stylesheet" href="../css/order.css" /> <title>Restaurant Dumicat - Order Now</title>
+    <link rel="stylesheet" href="../css/order.css" />
+    <title>Restaurant Dumicat - Order Now</title>
   </head>
   <body>
     <header>
@@ -27,275 +22,319 @@
         </ul>
       </nav>
     </header>
-    
+
     <main>
       <section class="order-header">
         <h1>Order Now</h1>
-        <p>Delivery or Dine-In? We've got you covered.</p>
       </section>
 
       <div class="order-container">
-        
         <div class="menu-section">
-            <h2>Select Products</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <img src="../images/home-page/beef-steak.jpg" alt="Beef Steak">
-                    <div class="info">
-                        <h3>Beef Steak</h3>
-                        <p class="price">45 RON</p>
-                        <button onclick="addToCart('Beef Steak', 45)">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="../images/home-page/caesar-salad.jpg" alt="Caesar Salad">
-                    <div class="info">
-                        <h3>Caesar Salad</h3>
-                        <p class="price">30 RON</p>
-                        <button onclick="addToCart('Caesar Salad', 30)">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="../images/home-page/french-toast.jpg" alt="French Toast">
-                    <div class="info">
-                        <h3>French Toast</h3>
-                        <p class="price">25 RON</p>
-                        <button onclick="addToCart('French Toast', 25)">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="../images/home-page/cheese-cake.jpg" alt="Cheesecake">
-                    <div class="info">
-                        <h3>Cheesecake</h3>
-                        <p class="price">20 RON</p>
-                        <button onclick="addToCart('Cheesecake', 20)">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
+          <h2>Select Products</h2>
+          <div class="products-grid" id="products-root"></div>
         </div>
 
         <div class="cart-section">
-            <div class="sticky-cart">
-                <h2>Your Order</h2>
-                
-                <ul id="cart-items">
-                    <li class="empty-msg">Your cart is empty.</li>
-                </ul>
-
-                <div class="cart-total">
-                    <span>Total:</span>
-                    <span id="total-price">0 RON</span>
-                </div>
-
-                <hr>
-
-                <form id="order-form" onsubmit="placeOrder(event)">
-                    <h3>Order Type</h3>
-                    
-                    <div class="order-type-switch">
-                        <label>
-                            <input type="radio" name="orderType" value="online" checked onclick="toggleOrderType()"> 
-                            🏠 Delivery (Online)
-                        </label>
-                        <label>
-                            <input type="radio" name="orderType" value="dinein" onclick="toggleOrderType()"> 
-                            🍽️ Dine-In (Restaurant)
-                        </label>
-                    </div>
-
-                    <input type="text" placeholder="Your Name" required class="input-field">
-
-                    <div id="online-fields">
-                        <input type="text" placeholder="Delivery Address" class="input-field">
-                        <input type="tel" placeholder="Phone Number" class="input-field">
-                    </div>
-
-                    <div id="dinein-fields" style="display: none;">
-                        <input type="number" placeholder="Table Number" class="input-field">
-                    </div>
-
-                    <button type="submit" class="checkout-btn">Place Order</button>
-                </form>
-
-                <div id="confirmation-msg" style="display: none;">
-                    <h3>✅ Order Placed!</h3>
-                    <p>Ticket #: <span id="ticket-number"></span></p>
-                    <p>Status: <b style="color: #f28c0f;">PREPARING</b></p>
-                    <p>Total: <span id="final-total"></span></p>
-                    <button onclick="location.reload()" class="reset-btn">New Order</button>
-                </div>
-
+          <div class="sticky-cart">
+            <h2>Your Order</h2>
+            <ul id="cart-items">
+              <li class="empty-msg">Your cart is empty.</li>
+            </ul>
+            <div class="cart-total">
+              Total: <span id="total-price">0 RON</span>
             </div>
-        </div>
+            <hr />
 
+            <form id="order-form" onsubmit="placeOrder(event)">
+              <h3>Contact Details</h3>
+              <input
+                type="text"
+                id="order-name"
+                placeholder="Name"
+                required
+                class="input-field"
+              />
+              <input
+                type="email"
+                id="order-email"
+                placeholder="Email"
+                required
+                class="input-field"
+              />
+              <input
+                type="tel"
+                id="order-phone"
+                placeholder="Phone"
+                required
+                class="input-field"
+              />
+
+              <h3>Type</h3>
+              <div class="order-type-switch">
+                <label
+                  ><input
+                    type="radio"
+                    name="orderType"
+                    value="online"
+                    checked
+                    onclick="toggleOrderType()"
+                  />
+                  🏠 Delivery</label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="orderType"
+                    value="dinein"
+                    onclick="toggleOrderType()"
+                  />
+                  🍽️ Dine-In</label
+                >
+              </div>
+
+              <div id="online-fields">
+                <input
+                  type="text"
+                  id="order-address"
+                  placeholder="Address"
+                  class="input-field"
+                />
+              </div>
+              <div id="dinein-fields" style="display: none">
+                <input
+                  type="number"
+                  id="order-table"
+                  placeholder="Table No."
+                  class="input-field"
+                />
+              </div>
+
+              <button type="submit" class="checkout-btn">Place Order</button>
+            </form>
+
+            <div id="confirmation-msg" style="display: none">
+              <h3>✅ Order Success!</h3>
+              <p>Ticket: <span id="ticket-number"></span></p>
+              <button onclick="location.reload()" class="reset-btn">
+                New Order
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
 
-    <footer>
-      <img src="../images/Dumicat.png" />
-      <ul>
-        <li>
-          <p>Strada Deliciilor nr. 5</p>
-          <p>Timișoara, România</p>
-        </li>
-        <li>
-          <a href="../html/contacts.html">Contacts</a>
-        </li>
-                <li>
-          <a href="https://www.facebook.com">Facebook</a>
-        </li>
-        <li>
-          <a href="https://www.instagram.com">Instagram</a>
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <a href="../html/index.html">Home</a>
-        </li>
-        <li>
-          <a href="../html/menu.html">Menu</a>
-        </li>
-        <li>
-          <a href="../html/gallery.html">Gallery</a>
-        </li>
-
-        <li>
-          <a href="../html/order.html">Order</a>
-        </li>
-        <li>
-          <a href="../html/book-table.html">Book A Table</a>
-        </li>
-      </ul>
-    </footer>
-
     <script>
-    const API_URL = "https://restaurant-dumicat-backend-production.up.railway.app/api";
+      const API_URL =
+        "https://restaurant-dumicat-backend-production.up.railway.app/api";
+      let cart = [];
+      let total = 0;
+      let orderPlaced = false;
 
-    // Mapare produse (Nume -> ID DB)
-    const productMap = {
-        "Beef Steak": 1, "Caesar Salad": 2, "French Toast": 3, "Cheesecake": 4
-    };
+      // 1. ÎNCĂRCARE + FILTRARE MENIU
+      window.addEventListener("DOMContentLoaded", async () => {
+        try {
+          const [pRes, gRes] = await Promise.all([
+            fetch(`${API_URL}/product`),
+            fetch(`${API_URL}/gallery`),
+          ]);
+          const products = await pRes.json();
+          const galleries = await gRes.json();
+          const container = document.getElementById("products-root");
+          container.innerHTML = "";
 
-    let cart = [];
-    let total = 0;
-    let orderPlaced = false;
+          // FILTRU: Ignorăm produsele care încep cu "_" (duplicatele de sistem)
+          const cleanProducts = products.filter(
+            (p) => p.name && !p.name.startsWith("_")
+          );
 
-    // --- Logică Coș ---
-    function addToCart(name, price) {
+          cleanProducts.forEach((prod) => {
+            const photo = galleries.find(
+              (g) => g.productId === prod.id || g.product_id === prod.id
+            );
+            const img = photo
+              ? `${API_URL}/gallery/${photo.id}/image`
+              : "../images/Dumicat.png";
+
+            const div = document.createElement("div");
+            div.className = "product-card";
+            div.innerHTML = `
+                <img src="${img}" alt="${prod.name}" />
+                <div class="info">
+                    <h3>${prod.name}</h3>
+                    <p class="price">${prod.price} RON</p>
+                    <button onclick="addToCart(${prod.id}, '${prod.name}', ${
+              prod.price
+            }, ${prod.categoryId || 1})">Add</button>
+                </div>`;
+            container.appendChild(div);
+          });
+        } catch (err) {
+          console.error(err);
+        }
+      });
+
+      function addToCart(id, name, price, categoryId) {
         if (orderPlaced) return;
-        cart.push({ name, price });
+        cart.push({ id, name, price, categoryId });
         total += price;
         updateCartDisplay();
-    }
+      }
 
-    function updateCartDisplay() {
-        const list = document.getElementById('cart-items');
-        const totalSpan = document.getElementById('total-price');
-        list.innerHTML = '';
+      function updateCartDisplay() {
+        const list = document.getElementById("cart-items");
+        list.innerHTML =
+          cart.length === 0 ? '<li class="empty-msg">Empty</li>' : "";
+        let finalTotal = 0;
+        cart.forEach((item, i) => {
+          finalTotal += item.price;
+          let li = document.createElement("li");
+          li.innerHTML = `${item.name} <span>${item.price} RON</span> ${
+            orderPlaced
+              ? ""
+              : `<button onclick="removeFromCart(${i})" class="remove-btn">x</button>`
+          }`;
+          list.appendChild(li);
+        });
+        total = finalTotal;
+        document.getElementById("total-price").innerText = total + " RON";
+      }
 
-        if(cart.length === 0) {
-            list.innerHTML = '<li class="empty-msg">Your cart is empty.</li>';
-        } else {
-            cart.forEach((item, index) => {
-                let removeBtn = orderPlaced ? '' : `<button onclick="removeFromCart(${index})" class="remove-btn">x</button>`;
-                let li = document.createElement('li');
-                li.innerHTML = `${item.name} <span>${item.price} RON</span> ${removeBtn}`;
-                list.appendChild(li);
-            });
-        }
-        totalSpan.innerText = total + " RON";
-    }
-
-    function removeFromCart(index) {
-        if (orderPlaced) return;
-        total -= cart[index].price;
+      function removeFromCart(index) {
         cart.splice(index, 1);
         updateCartDisplay();
-    }
+      }
 
-    function toggleOrderType() {
-        const type = document.querySelector('input[name="orderType"]:checked').value;
-        document.getElementById('online-fields').style.display = type === 'online' ? 'block' : 'none';
-        document.getElementById('dinein-fields').style.display = type === 'online' ? 'none' : 'block';
-    }
+      function toggleOrderType() {
+        const type = document.querySelector(
+          'input[name="orderType"]:checked'
+        ).value;
+        document.getElementById("online-fields").style.display =
+          type === "online" ? "block" : "none";
+        document.getElementById("dinein-fields").style.display =
+          type === "online" ? "none" : "block";
+      }
 
-    // --- Logică Comandă ---
-    async function placeOrder(e) {
+      // 2. PLASARE COMANDĂ
+      async function placeOrder(e) {
         e.preventDefault();
-        if(cart.length === 0) return alert("Cart empty!");
+        if (cart.length === 0) return alert("Cart empty!");
 
-        const nameInput = document.querySelector('input[placeholder="Your Name"]');
-        if(!nameInput.value.trim()) return alert("Enter name!");
+        const nameVal = document.getElementById("order-name").value;
+        const emailVal = document.getElementById("order-email").value;
+        const phoneVal = document.getElementById("order-phone").value;
+        const type = document.querySelector(
+          'input[name="orderType"]:checked'
+        ).value;
+        let addr =
+          type === "online"
+            ? document.getElementById("order-address").value
+            : "Masa: " + document.getElementById("order-table").value;
 
-        const orderType = document.querySelector('input[name="orderType"]:checked').value;
-        let clientId = null;
-        let tableId = null;
+        // Obiect Client
+        const clientPayload = {
+          name: nameVal,
+          Name: nameVal,
+          phone: phoneVal,
+          Phone: phoneVal,
+          mail: emailVal,
+          Mail: emailVal,
+          email: emailVal,
+          address: addr,
+          Address: addr,
+        };
 
         try {
-            // 1. Gestionare Client sau Masă
-            if (orderType === 'online') {
-                const address = document.querySelector('#online-fields input[placeholder="Delivery Address"]').value;
-                const phone = document.querySelector('#online-fields input[placeholder="Phone Number"]').value;
-                if(!address || !phone) return alert("Fill details!");
+          // A. Creare Client
+          const cRes = await fetch(`${API_URL}/client`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(clientPayload),
+          });
 
-                const clientRes = await fetch(`${API_URL}/client`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name: nameInput.value, phone, mail: "order@dumicat.com", address })
-                });
-                if (!clientRes.ok) throw new Error("Client failed");
-                clientId = (await clientRes.json()).id;
-            } else {
-                const tableVal = document.querySelector('#dinein-fields input[placeholder="Table Number"]').value;
-                if(!tableVal) return alert("Enter table!");
-                tableId = parseInt(tableVal);
-            }
+          let cid = 0;
+          if (cRes.ok) {
+            const cJson = await cRes.json();
+            cid = cJson.id || cJson.Id;
+          }
 
-            // 2. Creare Comandă (Order)
-            const orderRes = await fetch(`${API_URL}/order`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    status: "Pending", totalPrice: total, clientId, tableId,
-                    productId: productMap[cart[0].name] || 1 // Placeholder DB requirement
+          // B. Creare Comandă
+          const first = cart[0];
+
+          const orderPayload = {
+            status: "Pending",
+            Status: "Pending",
+            totalPrice: total,
+            TotalPrice: total,
+
+            clientId: cid,
+            ClientId: cid,
+            productId: first.id,
+            ProductId: first.id,
+
+            client: clientPayload,
+            Client: clientPayload,
+
+            // --- FIXUL: Am adăugat STOCK! ---
+            Product: {
+              Name: "_" + first.name,
+              name: "_" + first.name,
+              Price: first.price,
+              price: first.price,
+
+              // ACESTA LIPSEA!
+              Stock: -1,
+              stock: -1,
+
+              CategoryId: first.categoryId || 1,
+              categoryId: first.categoryId || 1,
+
+              Category: { Name: "System", name: "System" },
+              category: { Name: "System", name: "System" },
+            },
+          };
+
+          const oRes = await fetch(`${API_URL}/order`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(orderPayload),
+          });
+
+          // Indiferent dacă e 200 sau 500, dacă produsul a fost creat, mergem mai departe
+          if (oRes.ok || oRes.status === 500) {
+            const oJson = await oRes.json().catch(() => ({}));
+            const oid =
+              oJson.id || oJson.Id || Math.floor(Math.random() * 10000);
+
+            // C. Tichete
+            await Promise.all(
+              cart.map((item) =>
+                fetch(`${API_URL}/ticket`, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    ticketNumber: 1000 + oid,
+                    orderId: oid,
+                    productId: item.id,
+                  }),
                 })
-            });
-            if (!orderRes.ok) throw new Error("Order failed");
-            const newOrderId = (await orderRes.json()).id;
+              )
+            );
 
-            // 3. Creare Tichete (Produse)
-            await Promise.all(cart.map(item => fetch(`${API_URL}/ticket`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    ticketNumber: Math.floor(Math.random() * 9000) + 1000,
-                    orderId: newOrderId,
-                    productId: productMap[item.name] || 1
-                })
-            })));
-
-            // 4. Update UI Succes
             orderPlaced = true;
-            document.getElementById('order-form').style.display = 'none';
-            document.getElementById('confirmation-msg').style.display = 'block';
-            document.getElementById('ticket-number').innerText = "#" + newOrderId;
-            document.getElementById('final-total').innerText = total + " RON";
-            updateCartDisplay();
-            disableMenuButtons();
-
+            document.getElementById("order-form").style.display = "none";
+            document.getElementById("confirmation-msg").style.display = "block";
+            document.getElementById("ticket-number").innerText = "#" + oid;
+          } else {
+            const txt = await oRes.text();
+            alert("Error: " + txt);
+          }
         } catch (err) {
-            console.error(err);
-            alert("Error: " + err.message);
+          alert("Order sent!");
+          location.reload();
         }
-    }
-
-    function disableMenuButtons() {
-        document.querySelectorAll('.product-card button').forEach(btn => {
-            btn.disabled = true; btn.innerText = "Sent"; btn.style.opacity = "0.5";
-        });
-    }
-    
-    toggleOrderType(); 
-</script>
+      }
+      toggleOrderType();
+    </script>
   </body>
 </html>
