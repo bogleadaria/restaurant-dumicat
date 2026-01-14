@@ -118,44 +118,74 @@
       </div>
     </main>
 
-<script>
-    const API_URL = "https://restaurant-dumicat-backend-production.up.railway.app/api";
-    document.getElementById('date').min = new Date().toISOString().split("T")[0]; // Data minimă: Azi
+    <script>
+      // 1. Configurare
+      document.getElementById("date").min = new Date()
+        .toISOString()
+        .split("T")[0];
+      const API_URL =
+        "https://restaurant-dumicat-backend-production.up.railway.app/api";
 
       document
         .querySelector(".booking-form")
         .addEventListener("submit", async function (event) {
           event.preventDefault();
 
-          const clientData = {
-            name: document.getElementById("name").value,
-            phone: document.getElementById("phone").value,
-            mail: document.getElementById("mail").value,
-            address: "Timișoara",
+          // Colectăm valorile din formular
+          const nameVal = document.getElementById("name").value;
+          const phoneVal = document.getElementById("phone").value;
+          const mailVal = document.getElementById("mail").value;
+
+          const dateVal = document.getElementById("date").value;
+          const timeVal = document.getElementById("time").value + ":00";
+          const peopleVal = parseInt(document.getElementById("people").value);
+
+          // Construim JSON-ul DIRECT pentru rezervare.
+          // NU mai facem cererea separată pentru Client (Step A), o face serverul automat.
+          const reservationData = {
+            // --- 1. Cheile Externe (FK) ---
+            // Punem 0 sau 1. Serverul va folosi obiectele de mai jos.
+            clientId: 0,
+            tableId: 1,
+
+            // --- 2. Datele Rezervării ---
+            date: dateVal,
+            time: timeVal,
+            status: "Pending",
+
+            // Folosim ambele variante pentru siguranță
+            peopleCount: peopleVal,
+            PeopleCount: peopleVal,
+
+            // --- 3. OBIECTUL CLIENT (FĂRĂ ID) ---
+            // Eliminând ID-ul, serverul va crea un client nou și nu va da eroare de duplicat.
+            client: {
+              name: nameVal,
+              phone: phoneVal,
+
+              // Trimitem variantele de email
+              mail: mailVal,
+              email: mailVal,
+
+              address: "Timișoara",
+            },
+
+            // --- 4. OBIECTUL MASĂ (FĂRĂ ID) ---
+            // Trimitem datele pentru validare, dar fără ID ca să evităm "Identity Insert Error"
+            table: {
+              // Acesta este câmpul pe care îl cerea eroarea ta!
+              tableNumber: 1,
+              TableNumber: 1,
+
+              // Completăm și restul, just in case
+              number: 1,
+              seatsNumber: 4,
+            },
           };
 
+          console.log("Se trimite JSON (Fără ID-uri):", reservationData);
+
           try {
-            // 1. Creare Client
-            const clientResponse = await fetch(`${API_URL}/client`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(clientData),
-            });
-
-            if (!clientResponse.ok)
-              throw new Error(await clientResponse.text());
-            const clientResult = await clientResponse.json();
-
-            // 2. Creare Rezervare (legată de client)
-            const reservationData = {
-              clientId: clientResult.id,
-              tableId: 1,
-              reservationDate: document.getElementById("date").value,
-              reservationTime: document.getElementById("time").value + ":00",
-              peopleCount: parseInt(document.getElementById("people").value),
-              status: "Pending",
-            };
-
             const resResponse = await fetch(`${API_URL}/reservation`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -163,14 +193,26 @@
             });
 
             if (resResponse.ok) {
-              alert("Rezervare reușită!");
+              alert("✅ GATA! Rezervarea a fost făcută cu succes!");
               document.querySelector(".booking-form").reset();
             } else {
-              alert("Eroare rezervare: " + (await resResponse.text()));
+              // Dacă serverul dă eroare text (nu JSON), o prindem aici
+              const textData = await resResponse.text();
+              console.error("Eroare Server:", textData);
+
+              try {
+                const jsonErr = JSON.parse(textData);
+                alert(
+                  "❌ Eroare Backend: " +
+                    JSON.stringify(jsonErr.errors || jsonErr)
+                );
+              } catch (e) {
+                alert("❌ Eroare Server (500): " + textData.substring(0, 100));
+              }
             }
           } catch (error) {
             console.error(error);
-            alert("Eroare conexiune server.");
+            alert("Eroare conexiune: " + error.message);
           }
         });
     </script>
